@@ -1,0 +1,13 @@
+body {
+    background-color: #f8f9fa;
+}
+.pizza-card {
+    margin-bottom: 20px;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.pizza-image {
+    height: 200px;
+    object-fit: cover;
+}
