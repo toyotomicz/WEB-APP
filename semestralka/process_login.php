@@ -3,6 +3,9 @@
 $username = isset($_POST['username']) ? $_POST['username'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 
+// Zahashování hesla
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 ?>
 <!DOCTYPE html>
 <html lang="cs">
@@ -10,8 +13,8 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Process Login</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Odkaz na stažený Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -30,8 +33,8 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
                 <td><?php echo htmlspecialchars($username); ?></td>
             </tr>
             <tr>
-                <td>Heslo</td>
-                <td><?php echo htmlspecialchars($password); ?></td>
+                <td>Hash hesla</td>
+                <td><?php echo htmlspecialchars($hashedPassword); ?></td>
             </tr>
         </tbody>
     </table>
@@ -41,10 +44,8 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
     </div>
 </div>
 
-<!-- Bootstrap JS a jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Odkaz na stažený Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

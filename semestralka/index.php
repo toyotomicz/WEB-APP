@@ -4,49 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzerie</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .pizza-card {
-            margin-bottom: 20px;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .pizza-image {
-            height: 200px;
-            object-fit: cover;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="pizza.ico">
+    <!-- Lokální Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- Navigační lišta -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Pizzerie</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">O nás</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Kontakt</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.php">Přihlášení</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<?php include "navbar.php"; ?>
 
 <!-- Hlavní obsah -->
 <div class="container mt-4">
@@ -55,7 +21,7 @@
         <!-- Pizza 1 -->
         <div class="col-md-4">
             <div class="card pizza-card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top pizza-image" alt="Pizza Margherita">
+                <img src="images/pizza1.webp" class="card-img-top pizza-image" alt="Pizza Margherita">
                 <div class="card-body">
                     <h5 class="card-title">Pizza Margherita</h5>
                     <p class="card-text">Tradiční pizza s rajčatovou omáčkou a mozzarellou.</p>
@@ -67,7 +33,7 @@
         <!-- Pizza 2 -->
         <div class="col-md-4">
             <div class="card pizza-card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top pizza-image" alt="Pizza Salami">
+                <img src="images/pizza2.webp" class="card-img-top pizza-image" alt="Pizza Salami">
                 <div class="card-body">
                     <h5 class="card-title">Pizza Salami</h5>
                     <p class="card-text">Pizza s pikantním salámem a rajčatovou omáčkou.</p>
@@ -79,7 +45,7 @@
         <!-- Pizza 3 -->
         <div class="col-md-4">
             <div class="card pizza-card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top pizza-image" alt="Pizza Quattro Formaggi">
+                <img src="images/pizza3.webp" class="card-img-top pizza-image" alt="Pizza Quattro Formaggi">
                 <div class="card-body">
                     <h5 class="card-title">Pizza Quattro Formaggi</h5>
                     <p class="card-text">Pizza se čtyřmi druhy sýrů: mozzarella, gorgonzola, parmezán a pecorino.</p>
@@ -91,10 +57,15 @@
     </div>
 </div>
 
-<!-- Bootstrap JS a jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Footer -->
+<footer>
+    <p>Adresa: Pizzerie u Hvězdy, Hlavní 123, Praha 1</p>
+    <p>Telefon: +420 123 456 789</p>
+</footer>
+
+<!-- Lokální Bootstrap JS a jQuery -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
