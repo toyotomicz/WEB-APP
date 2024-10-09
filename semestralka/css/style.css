@@ -1,25 +1,6 @@
 body {
     background-color: #f8f9fa;
 }
-.navbar {
-    background-color: #ff4c4c;
-}
-.navbar-nav {
-    margin-left: auto;
-}
-.pizza-card {
-    margin-bottom: 20px;
-}
-.navbar-brand {
-    font-weight: bold;
-    color: white;
-}
-.nav-link {
-    color: white;
-}
-.nav-link:hover {
-    color: #ddd;
-}
 .pizza-image {
     height: 200px;
     object-fit: cover;
@@ -51,3 +32,101 @@ footer {
 .nav-link:hover {
     color: #ddd;
 }
+.navbar-brand {
+    padding-left: 2% /* Můžete upravit hodnotu podle potřeby */
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #bdc3c7; /* Šedé pozadí */
+    color: #34495e; /* Tmavší text pro kontrast */
+    min-height: 100vh; /* Minimální výška pro footer */
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive; /* Krásný font pro nadpisy */
+    color: #e74c3c; /* Barva nadpisu */
+}
+
+.pizza-card {
+    margin-bottom: 20px;
+    border: none; /* Odstranění okraje karet */
+    border-radius: 10px; /* Zaoblené rohy */
+    overflow: hidden; /* Skrytí přetečení obsahu */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animace při najetí */
+    background-color: #ffffff; /* Světlé pozadí pro karty pizzy */
+}
+
+.pizza-card:hover {
+    transform: scale(1.05); /* Zvětšení karty při najetí myši */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Efekt stínu při najetí */
+}
+
+.pizza-image {
+    height: 200px; /* Nastavení výšky pro obrázky pizzy */
+    object-fit: cover; /* Přizpůsobení velikosti bez deformace */
+}
+
+.footer {
+    background-color: #34495e; /* Tmavé pozadí pro footer */
+    color: white; /* Bílý text */
+    padding: 20px 0; /* Vnitřní odsazení */
+    position: relative; /* Aby se footer držel na konci stránky */
+    bottom: 0; /* Umístění na spodní okraj */
+    width: 100%; /* Šířka na 100% */
+    margin-top: auto; /* Umístění footeru na konec stránky */
+    text-align: center; /* Vycentrování textu */
+}
+
+.btn-primary {
+    background-color: #e74c3c; /* Červená barva pro tlačítka */
+    border: none; /* Bez okrajů */
+}
+
+.btn-primary:hover {
+    background-color: #c0392b; /* Tmavší červená při najetí myši */
+}
+
+/* Styly pro navbar */
+.navbar {
+    background-color: #34495e; /* Tmavé pozadí pro navbar */
+}
+
+.navbar-brand {
+    font-family: 'Roboto', sans-serif; /* Stejný font jako zbytek stránky */
+    color: #ffffff; /* Bílé písmo pro značku */
+}
+
+.navbar-nav {
+    flex-direction: row; /* Horizontální uspořádání položek */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 15px; /* Odsazení mezi položkami */
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Roboto', sans-serif; /* Stejný font jako zbytek stránky */
+    padding: 15px 20px; /* Přidaný padding pro prvky menu */
+    color: #ffffff; /* Bílé písmo */
+    transition: background-color 0.3s; /* Efekt přechodu při najetí myši */
+    border-radius: 5px; /* Zaoblené rohy pro nav-link */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Efekt pozadí při najetí myši */
+}
+
+/* Tlačítko pro mobilní zobrazení */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Tmavší barva okraje pro tlačítko */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='white'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Bílá ikona pro tlačítko */
+}
+
+
