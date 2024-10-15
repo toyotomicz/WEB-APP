@@ -11,30 +11,35 @@
 </head>
 <body>
 
+<!-- Navigační lišta -->
+<?php include "navbar.php"; ?>
+
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Registrace</h2>
-    
-    <form action="process_register.php" method="post">
-        <div class="form-group">
-            <label for="username">Uživatelské jméno <i class="fas fa-user"></i></label>
-            <input type="text" class="form-control" id="username" name="username" required>
+    <div class="form-container">
+        <h2 class="text-center mb-4">Registrace</h2>
+        
+        <form action="process_register.php" method="post">
+            <div class="form-group">
+                <label for="username">Uživatelské jméno <i class="fas fa-user"></i></label>
+                <input type="text" class="form-control form-control-sm" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail <i class="fas fa-envelope"></i></label>
+                <input type="email" class="form-control form-control-sm" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Heslo <i class="fas fa-lock"></i></label>
+                <input type="password" class="form-control form-control-sm" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Potvrdit heslo <i class="fas fa-lock"></i></label>
+                <input type="password" class="form-control form-control-sm" id="confirm_password" name="confirm_password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Registrovat se</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="login.php">Máte účet? Přihlaste se zde!</a>
         </div>
-        <div class="form-group">
-            <label for="email">E-mail <i class="fas fa-envelope"></i></label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Heslo <i class="fas fa-lock"></i></label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Potvrdit heslo <i class="fas fa-lock"></i></label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Registrovat se</button>
-    </form>
-    <div class="text-center mt-3">
-        <a href="login.php">Máte účet? Přihlaste se zde!</a>
     </div>
 </div>
 

@@ -6,8 +6,8 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
 
 // Zahashování hesla
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-$hashed_confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT);
+$hashed_password = password_hash($password, PASSWORD_BCRYPT);
+$hashed_confirm_password = password_hash($confirm_password, PASSWORD_BCRYPT);
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ $hashed_confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT);
             </tr>
             <tr>
                 <td>Hash hesla potvrzeni</td>
-                <td><?php echo htmlspecialchars($hashed_confirm_password); ?></td>
+                <td><?php ; ?></td>
             </tr>
         </tbody>
     </table>

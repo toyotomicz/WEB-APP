@@ -1,10 +1,10 @@
 <?php
 // Získání odeslaných hodnot z formuláře
-$username = isset($_POST['username']) ? $_POST['username'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 // Zahashování hesla
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 ?>
 <!DOCTYPE html>
@@ -29,8 +29,8 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         </thead>
         <tbody>
             <tr>
-                <td>Uživatelské jméno</td>
-                <td><?php echo htmlspecialchars($username); ?></td>
+                <td>Email</td>
+                <td><?php echo htmlspecialchars($email); ?></td>
             </tr>
             <tr>
                 <td>Hash hesla</td>
