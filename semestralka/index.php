@@ -1,71 +1,113 @@
+<?php
+session_start();
+
+// Předdefinované pizzy s obrázky a popisy
+$pizzas = [
+    ['id' => 1, 'name' => 'Margarita', 'price' => 150, 'description' => 'Klasická pizza s rajčatovým základem a sýrem.', 'image' => 'pizza-1.jpg'],
+    ['id' => 2, 'name' => 'Pepperoni', 'price' => 180, 'description' => 'Pizza s pikantním salámem pepperoni a sýrem.', 'image' => 'pizza-2.jpg'],
+    ['id' => 3, 'name' => 'Funghi', 'price' => 170, 'description' => 'Pizza s houbami a sýrem na rajčatovém základu.', 'image' => 'pizza-3.jpg']
+];
+
+// Inicializace košíku
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+// Přidání pizzy do košíku
+if (isset($_POST['pizza_id'])) {
+    $pizza_id = $_POST['pizza_id'];
+    $pizza = $pizzas[$pizza_id - 1];
+
+    // Přidání nebo zvýšení množství pizzy v košíku
+    if (isset($_SESSION['cart'][$pizza_id])) {
+        $_SESSION['cart'][$pizza_id]['quantity'] += 1;
+    } else {
+        $_SESSION['cart'][$pizza_id] = [
+            'name' => $pizza['name'],
+            'price' => $pizza['price'],
+            'quantity' => 1
+        ];
+    }
+    header('Location: index.php');
+    exit;
+}
+
+// Počet pizz v košíku
+$cart_count = 0;
+foreach ($_SESSION['cart'] as $item) {
+    $cart_count += $item['quantity'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzerie</title>
+    <title>Výběr Pizzy</title>
     <link rel="icon" type="image/x-icon" href="pizza.ico">
-    <!-- Lokální Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .pizza-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .pizza-card {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .pizza-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .pizza-card h3 {
+            margin-top: 15px;
+            font-size: 1.5em;
+        }
+        .pizza-card p {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
 
 <!-- Navigační lišta -->
 <?php include "navbar.php"; ?>
 
-<!-- Hlavní obsah -->
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Naše nabídka pizz</h1>
-    <div class="row">
-        <!-- Pizza 1 -->
-        <div class="col-md-4">
-            <div class="card pizza-card">
-                <img src="images/pizza-1.jpg" class="card-img-top pizza-image" alt="Pizza Margherita">
-                <div class="card-body">
-                    <h5 class="card-title">Pizza Margherita</h5>
-                    <p class="card-text">Tradiční pizza s rajčatovou omáčkou a mozzarellou.</p>
-                    <p class="card-text"><strong>Cena: 180 Kč</strong></p>
-                    <button class="btn btn-primary btn-block">Objednat</button>
-                </div>
-            </div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Vyberte si pizzu</h2>
+
+    <div class="pizza-container">
+        <?php foreach ($pizzas as $pizza): ?>
+        <div class="pizza-card">
+            <img src="images/<?php echo $pizza['image']; ?>" alt="<?php echo htmlspecialchars($pizza['name']); ?>">
+            <h3><?php echo htmlspecialchars($pizza['name']); ?></h3>
+            <p><?php echo htmlspecialchars($pizza['description']); ?></p>
+            <p><strong><?php echo number_format($pizza['price'], 2); ?> Kč</strong></p>
+            <form method="post" action="">
+                <input type="hidden" name="pizza_id" value="<?php echo $pizza['id']; ?>">
+                <button type="submit" class="btn btn-primary btn-block">Objednat</button>
+            </form>
         </div>
-        <!-- Pizza 2 -->
-        <div class="col-md-4">
-            <div class="card pizza-card">
-                <img src="images/pizza-2.jpg" class="card-img-top pizza-image" alt="Pizza Salami">
-                <div class="card-body">
-                    <h5 class="card-title">Pizza Salami</h5>
-                    <p class="card-text">Pizza s pikantním salámem a rajčatovou omáčkou.</p>
-                    <p class="card-text"><strong>Cena: 200 Kč</strong></p>
-                    <button class="btn btn-primary btn-block">Objednat</button>
-                </div>
-            </div>
-        </div>
-        <!-- Pizza 3 -->
-        <div class="col-md-4">
-            <div class="card pizza-card">
-                <img src="images/pizza-3.jpg" class="card-img-top pizza-image" alt="Pizza Quattro Formaggi">
-                <div class="card-body">
-                    <h5 class="card-title">Pizza Quattro Formaggi</h5>
-                    <p class="card-text">Pizza se čtyřmi druhy sýrů: mozzarella, gorgonzola, parmezán a pecorino.</p>
-                    <p class="card-text"><strong>Cena: 220 Kč</strong></p>
-                    <button class="btn btn-primary btn-block">Objednat</button>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
 <!-- Footer -->
-<footer class="footer text-center">
+<footer>
     <p>Adresa: Pizzerie u Hvězdy, Hlavní 123, Praha 1</p>
     <p>Telefon: +420 123 456 789</p>
 </footer>
 
-<!-- Lokální Bootstrap JS a jQuery -->
+<!-- Local Bootstrap JS and jQuery -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 
