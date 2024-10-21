@@ -20,6 +20,18 @@ $cart_count = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'
                 <a class="nav-link" href="register.php">Registrace</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="kuchar_objednavky.php">Objednavky</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pridat_pizzu.php">Pizzy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pridat_kuchare.php">Pridat kuchare</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pridat_admina.php">Pridat admina</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="cart.php">
                     Košík <span class="badge badge-pill badge-danger"><?php echo $cart_count; ?></span>
                 </a>

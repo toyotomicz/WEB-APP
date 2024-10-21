@@ -71,5 +71,27 @@ unset($_SESSION['error_message']);
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        var password = document.getElementById('password').value;
+        var confirm_password = document.getElementById('confirm_password').value;
+        
+        // Check if password is at least 3 characters
+        if (password.length < 3) {
+            event.preventDefault(); // Stop form submission
+            alert('Heslo musí mít alespoň 3 znaky.');
+            return; // Exit the function
+        }
+        
+        // Check if password matches confirm password
+        if (password !== confirm_password) {
+            event.preventDefault(); // Stop form submission
+            alert('Hesla se neshodují.');
+            return; // Exit the function
+        }
+    });
+</script>
+
+
 </body>
 </html>
