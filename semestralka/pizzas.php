@@ -1,6 +1,6 @@
 <?php
-include "pizza_manager.php";
-include "cart_manager.php";
+include "PizzaManager.php";
+include "CartManager.php";
 
 $pizzaManager = new PizzaManager();
 $pizzas = $pizzaManager->getPizzas();

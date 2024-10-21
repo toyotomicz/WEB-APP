@@ -14,12 +14,6 @@ $cart_count = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'
                 <a class="nav-link" href="index.php">Menu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">O nás</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Kontakt</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="login.php">Přihlášení</a>
             </li>
             <li class="nav-item">
@@ -27,8 +21,11 @@ $cart_count = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="cart.php">
-                    Košík <span class="badge badge-pill badge-primary"><?php echo $cart_count; ?></span>
+                    Košík <span class="badge badge-pill badge-danger"><?php echo $cart_count; ?></span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Odhlásit se</a>
             </li>
         </ul>
     </div>
