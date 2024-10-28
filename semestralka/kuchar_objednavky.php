@@ -1,3 +1,28 @@
+<?php
+// Připojení k databázi
+include "Data/mydatabase.class.php"; // Zahrňte soubor s třídou pro správu databáze
+include "Data/settings.inc.php"; // Zahrňte soubor s nastavením databáze
+
+// Načtení objednávek z databáze
+$query = "SELECT o.id AS id, o.customer_id, oi.quantity, p.name AS pizza_name, p.price AS pizza_price, o.status
+            FROM orders o
+            JOIN order_items oi ON o.id = oi.id
+            JOIN pizza_types p ON oi.id = p.id";
+// Zpracování filtru
+if (isset($_GET['filter'])) {
+    $filter = $_GET['filter'];
+
+    if ($filter == 'v_priprave') {
+        $query .= " WHERE o.status = 'Vytvořeno'";
+    } elseif ($filter == 'dokonceno') {
+        $query .= " WHERE o.status = 'Dokončeno'";
+    }
+}
+$db = new MyDatabase(DB_SERVER, DB_NAME, DB_USER, DB_PASS);
+// Načtení objednávek z databáze
+$result = $db->query($query);
+?>
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -10,13 +35,11 @@
 </head>
 <body>
 
-<!-- Navigační lišta -->
 <?php include "navbar.php"; ?>
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Seznam objednávek</h2>
 
-    <!-- Zobrazení zprávy po označení objednávky jako dokončené -->
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-success text-center">
             <?php echo $_SESSION['message']; ?>
@@ -24,14 +47,12 @@
         </div>
     <?php endif; ?>
 
-    <!-- Filtrace objednávek dle stavu -->
     <div class="filter-section mb-4">
         <a href="kuchar_objednavky.php?filter=all" class="btn btn-primary">Všechny objednávky</a>
         <a href="kuchar_objednavky.php?filter=v_priprave" class="btn btn-warning">V přípravě</a>
         <a href="kuchar_objednavky.php?filter=dokonceno" class="btn btn-success">Dokončené</a>
     </div>
 
-    <!-- Tabulka objednávek -->
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -43,12 +64,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
+            <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
                 <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['zakaznik']; ?></td>
-                    <td><?php echo $row['polozky']; ?></td>
-                    <td><?php echo $row['status']; ?></td>
+                    <td><?php echo $row['order_id']; ?></td>
+                    <td><?php echo isset($row['zakaznik']) ? htmlspecialchars($row['zakaznik']) : 'Neznámý zákazník'; ?></td>
+                    <td>
+                        <?php echo htmlspecialchars($row['pizza_name']) . ' (x' . $row['quantity'] . ')'; ?>
+                    </td>
+                    <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td>
                         <?php if ($row['status'] == 'V přípravě'): ?>
                             <form action="kuchar_objednavky.php" method="post">
@@ -65,7 +88,6 @@
     </table>
 </div>
 
-<!-- Local Bootstrap JS and jQuery -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 

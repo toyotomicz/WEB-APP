@@ -1,7 +1,15 @@
 <?php
+// Načtení dat z databáze
+include "Data/mydatabase.class.php"; // Zahrňte soubor s třídou pro správu databáze
+include "Data/settings.inc.php"; // Zahrňte soubor s nastavením databáze
+include "pizza_manager.php";
 include "cart_manager.php";
 
-$cartManager = new CartManager();
+// Inicializace instance MyDatabase
+$db = new MyDatabase(DB_SERVER, DB_NAME, DB_USER, DB_PASS);
+
+// Inicializace CartManageru s připojením
+$cartManager = new CartManager($db); 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['update_id'])) {
@@ -33,7 +41,7 @@ $totalPrice = $cartManager->getTotalPrice();
 <div class="container cart-container">
     <h2 class="text-center mb-4">Váš Košík</h2>
 
-    <?php if (empty($cartItems)): ?>
+    <?php if (empty($cartItems)):?>
         <div class="alert alert-warning" role="alert">
             Váš košík je prázdný.
         </div>
