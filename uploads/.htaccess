@@ -1,0 +1,13 @@
+# Zakáže přístup ke skriptům v nahraných souborech
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps)$">
+    Deny from all
+</FilesMatch>
+
+# Zakáže zobrazení adresáře
+Options -Indexes
+
+# Povolené MIME typy pro bezpečné nahrávání obrázků
+AddType image/jpeg .jpg
+AddType image/jpeg .jpeg
+AddType image/png .png
+AddType image/webp .webp
