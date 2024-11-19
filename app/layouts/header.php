@@ -7,13 +7,13 @@ $username = isset($_SESSION['user']['username']) ? $_SESSION['user']['username']
 $role = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : null;
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #34495e;">
+<nav class="navbar navbar-expand-xxl navbar-dark" style="background-color: #34495e;">
     <a class="navbar-brand" href="http://localhost/web-app/semestralka/public/index.php/menu">Moje Pizzerie</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <a class="nav-link" href="menu">Menu</a>
             </li>
@@ -48,7 +48,7 @@ $role = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : null;
             <?php endif; ?>
             <li class="nav-item">
                 <a class="nav-link" href="cart">
-                    Košík <span class="badge badge-pill badge-danger"><?php echo $cart_count; ?></span>
+                    Košík <span class="badge bg-danger rounded-pill"><?php echo $cart_count; ?></span>
                 </a>
             </li>
         </ul>
