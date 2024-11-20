@@ -54,7 +54,7 @@ class AdminController {
             }
             exit;
         } else {
-            $_SESSION['error'] = 'Please fill out all required fields.';
+            //$_SESSION['error'] = 'Please fill out all required fields.';
             exit;
         }
     }
@@ -88,7 +88,7 @@ class AdminController {
             }
             exit;
         } else {
-            $_SESSION['error'] = 'Please fill out all required fields.';
+            //$_SESSION['error'] = 'Please fill out all required fields.';
             exit;
         }
     }

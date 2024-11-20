@@ -27,11 +27,15 @@
                             <input type="hidden" name="pizza_name" value="<?php echo htmlspecialchars($pizza['name']); ?>">
                             <input type="hidden" name="pizza_price" value="<?php echo $pizza['price']; ?>">
                             <input type="hidden" name="pizza_image" value="<?php echo htmlspecialchars($pizza['image_path']); ?>">
-                            <button type="submit" class="btn btn-primary btn-block">Objednat</button>
+                            <?php if (isset($_SESSION['user'])): ?>
+                                <button type="submit" class="btn btn-primary btn-block">Objednat</button>
+                            <?php else: ?>
+                                <button type="button" class="btn btn-secondary btn-block" disabled style="cursor: not-allowed;">Přihlaste se pro objednávku</button>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             </div>
 
         </div>

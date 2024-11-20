@@ -1,36 +1,36 @@
 /* Typography and Base Styles */
 :root {
-    --primary-red: #d32f2f;
-    --dark-red: #b71c1c;
-    --cream: #fff8e1;
-    --wood-brown: #3e2723;
-    --gold: #ffd700;
-    --olive: #4caf50;
-    --text-dark: #1b0000;
-    --text-light: #fff8e1;
-    --shadow-sm: 0 2px 15px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.2);
+    --tomato-red: #B22222;
+    --deep-terracotta: #8B4513;
+    --rustic-cream: #F5E6D3;
+    --brick-red: #6F1D1B;
+    --wood-warmth: #5D4037;
+    --cheese-yellow: #FED766;
+    --basil-green: #2C5F2D;
+    --text-warm-dark: #2B2118;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-depth: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: var(--cream);
-    color: var(--text-dark);
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background-color: var(--rustic-cream);
+    color: var(--text-warm-dark);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-image: 
-        url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233e2723' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zm10 10h20v20H10V30z' fill='%23f0e6d6' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B4513' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        linear-gradient(to bottom right, var(--rustic-cream), #F0E4D6);
+    background-attachment: fixed;
     position: relative;
 }
 
 /* Header and Navbar */
 .navbar {
-    background: linear-gradient(to right, var(--dark-red), var(--primary-red));
-    border-bottom: 3px solid var(--gold);
-    box-shadow: var(--shadow-md);
+    background: linear-gradient(to right, var(--brick-red), var(--tomato-red));
+    border-bottom: 3px solid var(--cheese-yellow);
+    box-shadow: var(--shadow-depth);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -38,13 +38,15 @@ body {
 }
 
 .navbar-brand {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Brush Script MT', cursive;
     font-style: italic;
     font-size: clamp(2.5rem, 6vw, 3.5rem);
-    color: var(--cream);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--rustic-cream);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
     position: relative;
     padding: 0.5rem 1rem;
+    padding-left: 30px;
+    letter-spacing: 2px;
 }
 
 .navbar-brand::before,
@@ -60,6 +62,7 @@ body {
 .navbar-brand::before {
     left: -1.5rem;
     transform: translateY(-50%) rotate(-15deg);
+    padding-left: 25px;
 }
 
 .navbar-brand::after {
@@ -73,7 +76,7 @@ body {
 }
 
 .nav-link {
-    color: var(--cream);
+    color: var(--rustic-cream);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     padding: 0.8rem 1.2rem;
@@ -84,7 +87,7 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--gold);
+    color: var(--cheese-yellow);
     transform: translateY(-2px);
 }
 
@@ -95,7 +98,7 @@ body {
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: var(--gold);
+    background-color: var(--cheese-yellow);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -122,10 +125,15 @@ body {
     flex-direction: column;
     gap: 1.25rem;
     position: relative;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-soft);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     overflow: hidden;
-    border: 1px solid rgba(62, 39, 35, 0.1);
+    border: 1px solid var(--deep-terracotta);
+    background-image: linear-gradient(
+        45deg, 
+        rgba(255, 235, 205, 0.1) 0%, 
+        rgba(245, 222, 179, 0.05) 100%
+    );
 }
 
 .pizza-card::before {
@@ -135,12 +143,17 @@ body {
     left: 0;
     right: 0;
     height: 6px;
-    background: linear-gradient(90deg, var(--olive), var(--primary-red), var(--dark-red));
+    background: linear-gradient(
+        90deg, 
+        var(--basil-green), 
+        var(--tomato-red), 
+        var(--cheese-yellow)
+    );
 }
 
 .pizza-card:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-depth);
 }
 
 .pizza-card img {
@@ -148,18 +161,20 @@ body {
     aspect-ratio: 16/9;
     object-fit: cover;
     border-radius: 15px;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: sepia(10%);
 }
 
 .pizza-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.05) rotate(2deg);
+    filter: sepia(20%);
 }
 
 .pizza-card h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
     font-size: clamp(1.6rem, 3vw, 2rem);
-    color: var(--primary-red);
+    color: var(--tomato-red);
     margin: 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -167,7 +182,7 @@ body {
 .pizza-card .price {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--wood-brown);
+    color: var(--wood-warmth);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,18 +193,18 @@ body {
 .pizza-card .price::before {
     content: '€';
     font-size: 1.2rem;
-    color: var(--olive);
+    color: var(--basil-green);
 }
 
 /* Cart Styles */
 .cart-container {
-    background: white;
+    background: #FFF8E1;
     border-radius: 20px;
     padding: 2.5rem;
     max-width: 900px;
     margin: 2.5rem auto;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(62, 39, 35, 0.1);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--deep-terracotta);
 }
 
 .cart-item {
@@ -198,12 +213,12 @@ body {
     gap: 2rem;
     align-items: center;
     padding: 1.25rem;
-    border-bottom: 2px solid rgba(62, 39, 35, 0.1);
+    border-bottom: 2px solid rgba(139, 69, 19, 0.1);
     transition: background-color 0.3s ease;
 }
 
 .cart-item:hover {
-    background-color: var(--cream);
+    background-color: rgba(245, 230, 211, 0.5);
 }
 
 .cart-item img {
@@ -211,17 +226,17 @@ body {
     height: 120px;
     object-fit: cover;
     border-radius: 15px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-soft);
 }
 
 .quantity-control {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background: var(--cream);
+    background: var(--rustic-cream);
     padding: 0.75rem;
     border-radius: 30px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-soft);
 }
 
 .quantity-control button {
@@ -229,7 +244,7 @@ body {
     height: 35px;
     border: none;
     border-radius: 50%;
-    background: var(--primary-red);
+    background: var(--tomato-red);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -237,15 +252,15 @@ body {
 }
 
 .quantity-control button:hover {
-    background: var(--dark-red);
+    background: var(--brick-red);
     transform: scale(1.1);
 }
 
 /* Buttons */
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+    background: linear-gradient(135deg, var(--tomato-red), var(--brick-red));
     color: white;
-    border: none;
+    border: 2px solid var(--cheese-yellow);
     padding: 1rem 2rem;
     border-radius: 30px;
     font-family: Arial, Helvetica, sans-serif;
@@ -253,19 +268,19 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-soft);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+    background: linear-gradient(135deg, var(--brick-red), var(--tomato-red));
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-depth);
 }
 
 /* Footer */
 footer {
-    background: linear-gradient(to right, var(--wood-brown), #2c1810);
-    color: var(--text-light);
+    background: linear-gradient(to right, var(--wood-warmth), #4E3B31);
+    color: var(--rustic-cream);
     padding: 3rem 2rem;
     margin-top: auto;
     text-align: center;
@@ -273,6 +288,7 @@ footer {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.5px;
     line-height: 1.6;
+    border-top: 4px solid var(--cheese-yellow);
 }
 
 footer::before {
@@ -282,7 +298,12 @@ footer::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--olive), var(--primary-red), var(--gold));
+    background: linear-gradient(
+        90deg, 
+        var(--basil-green), 
+        var(--tomato-red), 
+        var(--cheese-yellow)
+    );
 }
 
 /* Media Queries */
@@ -344,6 +365,7 @@ footer::before {
         font-size: 0.9rem;
     }
 }
+
 @media (max-width: 1400px) {
     .navbar-expand-xxl .navbar-collapse {
         display: none !important;

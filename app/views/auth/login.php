@@ -57,12 +57,13 @@
                                 <div class="invalid-feedback">
                                     Zadejte heslo
                                 </div>
-                            </div>                                          
+                            </div>
+                            <br>                                  
                             <button type="submit" class="btn btn-primary btn-block">Přihlásit se</button>
                         </form>
                         
                         <p class="text-center mt-3">
-                            Nemáte účet? <a href="<?= BASEURL ?>register">Zaregistrujte se</a>
+                            Nemáte účet? <a href="<?= BASEURL ?>index.php/register">Zaregistrujte se</a>
                         </p>
                     </div>
                 </div>

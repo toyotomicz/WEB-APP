@@ -3,16 +3,22 @@ namespace App\Models;
 
 use PDO;
 use Exception;
-use App\Config\Settings;
 
 class OrderManager {
     private $db;
 
-    public function __construct($db) {
+    public function __construct(MyDatabase $db) {
         $this->db = $db;
     }
 
-    public function getOrdersByStatus($statusFilter = 'all') {
+    /**
+     * Získá seznam objednávek podle stavu.
+     *
+     * @param string $statusFilter Filtr stavu (např. 'all', 'v_priprave', 'dokonceno')
+     * @return array
+     * @throws Exception Pokud dojde k chybě během dotazu
+     */
+    public function getOrdersByStatus(string $statusFilter = 'all'): array {
         $query = "
             SELECT 
                 o.id AS order_id, 
@@ -22,57 +28,74 @@ class OrderManager {
             FROM orders o
             JOIN order_items oi ON o.id = oi.order_id
             JOIN pizza_types p ON oi.pizza_type_id = p.id";
-    
+        
+        $params = [];
+
         if ($statusFilter === 'v_priprave') {
-            $query .= " WHERE o.status = 'V přípravě'";
+            $query .= " WHERE o.status = :status";
+            $params[':status'] = 'V přípravě';
         } elseif ($statusFilter === 'dokonceno') {
-            $query .= " WHERE o.status = 'Dokončeno'";
+            $query .= " WHERE o.status = :status";
+            $params[':status'] = 'Dokončeno';
         }
-    
+
         $query .= "
             GROUP BY o.id, o.customer_id, o.status
-            ORDER BY o.id DESC"; // Řazení podle nejvyššího ID
-    
-        $stmt = $this->db->query($query);
+            ORDER BY o.id DESC";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
 
-    public function markAsCompleted($orderId) {
+    /**
+     * Nastaví objednávku jako dokončenou.
+     *
+     * @param int $orderId ID objednávky
+     * @return bool
+     * @throws Exception Pokud dojde k chybě při aktualizaci
+     */
+    public function markAsCompleted(int $orderId): bool {
         $sql = "UPDATE orders SET status = 'Dokončeno' WHERE id = :order_id";
-        $params = [':order_id' => $orderId];
-    
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute($params);
-    
-        if (!$result) {
+
+        if (!$stmt->execute([':order_id' => $orderId])) {
             throw new Exception("Nepodařilo se aktualizovat stav objednávky.");
         }
-    
+
         return true;
     }
 
-    public function createOrder($userId, $cartItems, $totalPrice) {
+    /**
+     * Vytvoří novou objednávku.
+     *
+     * @param int $userId ID uživatele
+     * @param array $cartItems Položky v košíku
+     * @param float $totalPrice Celková cena (momentálně nevyužívána)
+     * @return int ID nově vytvořené objednávky
+     * @throws Exception Pokud dojde k chybě během transakce
+     */
+    public function createOrder(int $userId, array $cartItems, float $totalPrice): int {
         try {
             $this->db->beginTransaction();
-    
-            $sql = "INSERT INTO orders (customer_id, status) VALUES (:userId, 'V přípravě')";
+
+            $sql = "INSERT INTO orders (customer_id, status) VALUES (:user_id, 'V přípravě')";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-            $stmt->execute();
-    
-            $orderId = $this->db->lastInsertId();
-    
-            $sqlItems = "INSERT INTO order_items (order_id, pizza_type_id, quantity) VALUES (:orderId, :pizzaTypeId, :quantity)";
+            $stmt->execute([':user_id' => $userId]);
+
+            $orderId = (int) $this->db->lastInsertId();
+
+            $sqlItems = "INSERT INTO order_items (order_id, pizza_type_id, quantity) VALUES (:order_id, :pizza_type_id, :quantity)";
             $stmtItems = $this->db->prepare($sqlItems);
+
             foreach ($cartItems as $item) {
-                $stmtItems->bindParam(':orderId', $orderId, PDO::PARAM_INT);
-                $stmtItems->bindParam(':pizzaTypeId', $item['pizza_type_id'], PDO::PARAM_INT);
-                $stmtItems->bindParam(':quantity', $item['quantity'], PDO::PARAM_INT);
-                $stmtItems->execute();
+                $stmtItems->execute([
+                    ':order_id' => $orderId,
+                    ':pizza_type_id' => $item['pizza_type_id'],
+                    ':quantity' => $item['quantity']
+                ]);
             }
-    
+
             $this->db->commit();
             return $orderId;
         } catch (Exception $e) {
@@ -81,3 +104,4 @@ class OrderManager {
         }
     }
 }
+?>

@@ -51,7 +51,7 @@
                                 <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
                                 <div class="invalid-feedback">Hesla se musí shodovat</div>
                             </div>
-
+                            <br>
                             <button type="submit" class="btn btn-primary btn-block">Registrovat se</button>
                         </form>
 
